@@ -5,8 +5,6 @@ import certifi
 load_dotenv()
 
 mongopwd = os.getenv('MONGOPWD')
-print(mongopwd)
 client = MongoClient("mongodb+srv://sak1sham:{}@cluster0.azvu4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority".format(mongopwd), tlsCAFile=certifi.where())
 db = client.todo_app
 collection_name = db["todos_app"]
-print(collection_name.find())
