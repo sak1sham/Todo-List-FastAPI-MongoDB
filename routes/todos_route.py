@@ -8,15 +8,16 @@ from bson import ObjectId
 
 todo_api_router = APIRouter()
 
+
 # retrieve
+@todo_api_router.get("/{id}")
+async def get_todo(id: str):
+    return todo_serializer(collection_name.find_one({"_id": ObjectId(id)}))
+
 @todo_api_router.get("/")
 async def get_todos():
     todos = todos_serializer(collection_name.find())
     return todos
-
-@todo_api_router.get("/{id}")
-async def get_todo(id: str):
-    return todos_serializer(collection_name.find_one({"_id": ObjectId(id)}))
 
 
 # post
